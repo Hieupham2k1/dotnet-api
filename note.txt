@@ -1,0 +1,8 @@
+Controller:
+    return View() ~ return the $functionName view in the $controllerName folder 
+View:
+    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> // go to HomeController@Index
+    * add ViewData to view cause error, must rebuild
+c#
+    async must return Task<>
+    check int: int.TryParse(str, out num)
