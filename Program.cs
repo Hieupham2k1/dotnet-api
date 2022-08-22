@@ -1,7 +1,24 @@
+// Any change in this file only apply when restart server
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy  =>
+        {
+            policy.WithOrigins(
+                "https://hieupham2k1.web.app",
+                "http://example.com"
+            ).AllowAnyHeader().AllowAnyMethod();
+            
+            policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+        });
+});
 
 var app = builder.Build();
 
@@ -17,6 +34,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

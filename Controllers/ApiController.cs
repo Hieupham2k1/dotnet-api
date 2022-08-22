@@ -63,7 +63,6 @@ public class ApiController : Controller
                     string table = between(JsonSerializer.Serialize(await fetch($"https://xosoketqua.com/xsmb-{ scopedDate }-{ month }-{ year }.html"), jso), "table table-bordered table-striped table-xsmb", "</table>");
                     string de = between(between(table, "special-prize-lg div-horizontal", "</span>"), ">", "a");
                     de = de.Substring(de.Length - 2, 2);
-                    Console.WriteLine(scopedDate);
                     if(!int.TryParse(de, out int _)) {
                         return;
                     }
