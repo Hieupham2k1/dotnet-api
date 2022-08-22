@@ -17,6 +17,7 @@ builder.Services.AddCors(options =>
             ).AllowAnyHeader().AllowAnyMethod();
             
             policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+            policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "hieupham2k1.web.app");
         });
 });
 
