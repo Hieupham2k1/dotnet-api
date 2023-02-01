@@ -36,6 +36,60 @@
                 "${workspaceFolder}/mvc-dotnet.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish-release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}",
+                "--configuration",
+                "Release",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "clean"
+        },
+        {
+            "type": "func",
+            "command": "host start",
+            "problemMatcher": "$func-node-watch",
+            "isBackground": true,
+            "dependsOn": "npm install (functions)",
+            "options": {
+                "cwd": "${workspaceFolder}/api"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "npm install (functions)",
+            "command": "npm install",
+            "options": {
+                "cwd": "${workspaceFolder}/api"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "npm prune (functions)",
+            "command": "npm prune --production",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/api"
+            }
         }
     ]
 }

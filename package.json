@@ -1,5 +1,5 @@
 {
     "scripts": {
-      "watch": "dotnet watch run"
+        "watch": "dotnet watch run"
     }
-  }
+}
